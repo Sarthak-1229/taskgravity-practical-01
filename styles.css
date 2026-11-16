@@ -1,0 +1,435 @@
+/* ==========================================================================
+   TaskGravity - Design System & Custom Minimalist Stylesheet
+   Practical 01: Single-Page Responsive Web Application
+   Strict Flat & Minimalist UI Rules (No generic AI gradients / no heavy blurs)
+   ========================================================================== */
+
+:root {
+  --tg-bg: #f8fafc;
+  --tg-surface: #ffffff;
+  --tg-surface-subtle: #f1f5f9;
+  --tg-border: #e2e8f0;
+  --tg-border-focus: #cbd5e1;
+  --tg-text: #0f172a;
+  --tg-text-muted: #64748b;
+  --tg-text-light: #94a3b8;
+  --tg-primary: #1e293b;
+  --tg-primary-hover: #0f172a;
+  --tg-accent: #2563eb;
+  --tg-accent-hover: #1d4ed8;
+  --tg-success: #059669;
+  --tg-warning: #d97706;
+  --tg-danger: #dc2626;
+  --tg-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --tg-radius-sm: 4px;
+  --tg-radius-md: 6px;
+  --tg-radius-lg: 8px;
+}
+
+body {
+  font-family: var(--tg-font-family);
+  background-color: var(--tg-bg);
+  color: var(--tg-text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Navbar */
+.navbar-custom {
+  background-color: var(--tg-surface);
+  border-bottom: 1px solid var(--tg-border);
+  padding: 0.75rem 1.25rem;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background-color: var(--tg-primary);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border-radius: var(--tg-radius-sm);
+  margin-right: 0.5rem;
+}
+
+.brand-text {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--tg-text);
+  font-size: 1.15rem;
+}
+
+.nav-link-custom {
+  color: var(--tg-text-muted) !important;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.5rem 0.85rem !important;
+  transition: color 0.15s ease-in-out;
+}
+
+.nav-link-custom:hover,
+.nav-link-custom.active {
+  color: var(--tg-text) !important;
+}
+
+/* Banner / Hero Section */
+.hero-banner {
+  background-color: var(--tg-surface);
+  border-bottom: 1px solid var(--tg-border);
+  padding: 3.5rem 0 3rem;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--tg-text-muted);
+  background-color: var(--tg-surface-subtle);
+  border: 1px solid var(--tg-border);
+  border-radius: 9999px;
+  margin-bottom: 1.25rem;
+}
+
+.hero-pill-indicator {
+  width: 7px;
+  height: 7px;
+  background-color: var(--tg-success);
+  border-radius: 50%;
+}
+
+.hero-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--tg-text);
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: 1.05rem;
+  color: var(--tg-text-muted);
+  max-width: 680px;
+  margin-top: 0.75rem;
+  font-weight: 400;
+}
+
+/* Minimalist Button System */
+.btn-tg-primary {
+  background-color: var(--tg-primary);
+  color: #ffffff;
+  border: 1px solid var(--tg-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: var(--tg-radius-md);
+  transition: all 0.15s ease-in-out;
+}
+
+.btn-tg-primary:hover,
+.btn-tg-primary:focus {
+  background-color: var(--tg-primary-hover);
+  border-color: var(--tg-primary-hover);
+  color: #ffffff;
+}
+
+.btn-tg-secondary {
+  background-color: var(--tg-surface);
+  color: var(--tg-text);
+  border: 1px solid var(--tg-border);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: var(--tg-radius-md);
+  transition: all 0.15s ease-in-out;
+}
+
+.btn-tg-secondary:hover,
+.btn-tg-secondary:focus {
+  background-color: var(--tg-surface-subtle);
+  border-color: var(--tg-border-focus);
+  color: var(--tg-text);
+}
+
+.btn-tg-accent {
+  background-color: var(--tg-accent);
+  color: #ffffff;
+  border: 1px solid var(--tg-accent);
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: var(--tg-radius-md);
+  transition: all 0.15s ease-in-out;
+}
+
+.btn-tg-accent:hover {
+  background-color: var(--tg-accent-hover);
+  color: #ffffff;
+}
+
+/* Metric / Stat Cards */
+.stat-card {
+  background: var(--tg-surface);
+  border: 1px solid var(--tg-border);
+  border-radius: var(--tg-radius-md);
+  padding: 1.25rem;
+  height: 100%;
+  transition: border-color 0.15s ease-in-out;
+}
+
+.stat-card:hover {
+  border-color: var(--tg-border-focus);
+}
+
+.stat-label {
+  font-size: 0.775rem;
+  font-weight: 600;
+  color: var(--tg-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.35rem;
+}
+
+.stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--tg-text);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.stat-meta {
+  font-size: 0.8rem;
+  color: var(--tg-text-muted);
+  margin-top: 0.35rem;
+}
+
+/* Custom Progress Bar */
+.progress-tg {
+  height: 6px;
+  background-color: var(--tg-surface-subtle);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progress-bar-tg {
+  background-color: var(--tg-accent);
+}
+
+/* Section Header */
+.section-heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--tg-text);
+  margin-bottom: 0.25rem;
+}
+
+.section-subtext {
+  font-size: 0.875rem;
+  color: var(--tg-text-muted);
+  margin-bottom: 1.25rem;
+}
+
+/* Task Board & Cards */
+.task-column-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.85rem;
+  border-bottom: 1px solid var(--tg-border);
+}
+
+.task-column-title {
+  font-size: 0.825rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--tg-text);
+}
+
+.task-card {
+  background: var(--tg-surface);
+  border: 1px solid var(--tg-border);
+  border-radius: var(--tg-radius-md);
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.task-card:hover {
+  border-color: var(--tg-border-focus);
+}
+
+.task-title {
+  font-size: 0.925rem;
+  font-weight: 600;
+  color: var(--tg-text);
+  margin-bottom: 0.35rem;
+  line-height: 1.35;
+}
+
+.task-desc {
+  font-size: 0.825rem;
+  color: var(--tg-text-muted);
+  margin-bottom: 0.75rem;
+  line-height: 1.45;
+}
+
+/* Badges (Minimal Flat Palette) */
+.badge-minimal {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--tg-radius-sm);
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.badge-priority-high {
+  background-color: #fef2f2;
+  color: #991b1b;
+  border-color: #fee2e2;
+}
+
+.badge-priority-medium {
+  background-color: #fffbeb;
+  color: #92400e;
+  border-color: #fef3c7;
+}
+
+.badge-priority-low {
+  background-color: #f1f5f9;
+  color: #334155;
+  border-color: #e2e8f0;
+}
+
+.badge-category {
+  background-color: #f8fafc;
+  color: #475569;
+  border-color: #e2e8f0;
+}
+
+.task-footer-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--tg-surface-subtle);
+  font-size: 0.75rem;
+  color: var(--tg-text-muted);
+}
+
+.avatar-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background-color: var(--tg-surface-subtle);
+  border: 1px solid var(--tg-border);
+  color: var(--tg-text);
+  font-size: 0.65rem;
+  font-weight: 600;
+  border-radius: 50%;
+}
+
+/* Minimalist Accordion */
+.accordion-custom .accordion-item {
+  border: 1px solid var(--tg-border);
+  border-radius: var(--tg-radius-md) !important;
+  margin-bottom: 0.5rem;
+  background-color: var(--tg-surface);
+  overflow: hidden;
+}
+
+.accordion-custom .accordion-button {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--tg-text);
+  background-color: var(--tg-surface);
+  padding: 0.9rem 1.25rem;
+  box-shadow: none;
+}
+
+.accordion-custom .accordion-button:not(.collapsed) {
+  color: var(--tg-accent);
+  background-color: var(--tg-surface-subtle);
+}
+
+.accordion-custom .accordion-body {
+  font-size: 0.85rem;
+  color: var(--tg-text-muted);
+  line-height: 1.6;
+  padding: 1rem 1.25rem;
+}
+
+/* Footer */
+.footer-custom {
+  background-color: var(--tg-surface);
+  border-top: 1px solid var(--tg-border);
+  padding: 2.5rem 0 2rem;
+  margin-top: 3.5rem;
+  font-size: 0.85rem;
+  color: var(--tg-text-muted);
+}
+
+.footer-brand {
+  font-weight: 700;
+  color: var(--tg-text);
+}
+
+.footer-link {
+  color: var(--tg-text-muted);
+  text-decoration: none;
+  font-size: 0.825rem;
+}
+
+.footer-link:hover {
+  color: var(--tg-text);
+  text-decoration: underline;
+}
+
+/* Modals */
+.modal-custom .modal-content {
+  border: 1px solid var(--tg-border);
+  border-radius: var(--tg-radius-lg);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+}
+
+.modal-custom .modal-header {
+  border-bottom: 1px solid var(--tg-border);
+  padding: 1rem 1.25rem;
+}
+
+.modal-custom .modal-footer {
+  border-top: 1px solid var(--tg-border);
+  padding: 0.75rem 1.25rem;
+}
+
+.form-control-tg,
+.form-select-tg {
+  border: 1px solid var(--tg-border);
+  border-radius: var(--tg-radius-md);
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+  color: var(--tg-text);
+  background-color: var(--tg-surface);
+}
+
+.form-control-tg:focus,
+.form-select-tg:focus {
+  border-color: var(--tg-accent);
+  outline: none;
+  box-shadow: 0 0 0 1px var(--tg-accent);
+}

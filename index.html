@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskGravity — Minimalist Task Orchestration</title>
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  
+  <!-- Custom Flat Minimalist Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ======================================================================
+       HEADER / NAVBAR
+       ====================================================================== -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#dashboard">
+          <span class="brand-mark">TG</span>
+          <span class="brand-text">TaskGravity</span>
+        </a>
+
+        <!-- Mobile Toggler -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#tgNavbarCollapse" aria-controls="tgNavbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Links & Actions -->
+        <div class="collapse navbar-collapse" id="tgNavbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3">
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom active" aria-current="page" href="#dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="#tasks">Tasks</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="#architecture">Architecture</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="#system-specs">System Specs</a>
+            </li>
+          </ul>
+
+          <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+            <span class="badge badge-minimal badge-category d-none d-sm-inline-flex">
+              <span class="hero-pill-indicator me-1"></span> v1.0.0 Static
+            </span>
+            <button class="btn btn-tg-secondary btn-sm" type="button" onclick="document.getElementById('tasks').scrollIntoView({behavior: 'smooth'})">
+              View Tasks
+            </button>
+            <button class="btn btn-tg-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#createTaskModal">
+              + New Task
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ======================================================================
+       MAIN / BANNER HERO SECTION
+       ====================================================================== -->
+  <section class="hero-banner" id="dashboard">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <div class="hero-pill">
+            <span class="hero-pill-indicator"></span>
+            Task Management System &bull; Practical 01
+          </div>
+          <h1 class="hero-title">High-Velocity Task Orchestration Without Visual Clutter.</h1>
+          <p class="hero-subtitle">
+            TaskGravity delivers a clean, high-density interface built on semantic HTML5, DRY CSS3, and responsive Bootstrap 5 grid primitives. Designed for engineer focus and operational clarity.
+          </p>
+          <div class="d-flex flex-wrap gap-2 mt-4">
+            <button class="btn btn-tg-accent" type="button" data-bs-toggle="modal" data-bs-target="#createTaskModal">
+              Create First Task
+            </button>
+            <a href="#tasks" class="btn btn-tg-secondary">
+              Explore Active Board
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-4 mt-4 mt-lg-0">
+          <div class="stat-card">
+            <div class="stat-label">Sprint Completion</div>
+            <div class="stat-value">68%</div>
+            <div class="stat-meta">17 of 25 engineering items closed</div>
+            <div class="progress progress-tg mt-3">
+              <div class="progress-bar progress-bar-tg" role="progressbar" style="width: 68%" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div class="d-flex justify-content-between stat-meta mt-2">
+              <span>Sprint: W-46</span>
+              <span>Target: Nov 20, 2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       METRICS OVERVIEW SECTION
+       ====================================================================== -->
+  <main class="container py-4">
+    <div class="row g-3 mb-4">
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="stat-card">
+          <div class="stat-label">Total Backlog</div>
+          <div class="stat-value">12</div>
+          <div class="stat-meta text-muted">Awaiting prioritization</div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="stat-card">
+          <div class="stat-label">In Flight</div>
+          <div class="stat-value">6</div>
+          <div class="stat-meta text-muted">Actively being implemented</div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="stat-card">
+          <div class="stat-label">Under Review</div>
+          <div class="stat-value">3</div>
+          <div class="stat-meta text-muted">Pending code verification</div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="stat-card">
+          <div class="stat-label">Resolved</div>
+          <div class="stat-value">28</div>
+          <div class="stat-meta text-muted">Shipped to production</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         TASK BOARD (KANBAN COLUMNS)
+         ====================================================================== -->
+    <section class="mb-5" id="tasks">
+      <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+        <div>
+          <h2 class="section-heading">Active Task Streams</h2>
+          <p class="section-subtext mb-0">Categorized views across development stages.</p>
+        </div>
+        <div class="d-flex gap-2 mt-2 mt-sm-0">
+          <span class="badge badge-minimal badge-category">Filter: All Sprints</span>
+          <span class="badge badge-minimal badge-category">Sorted by: Urgency</span>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <!-- Column 1: Backlog -->
+        <div class="col-12 col-md-4">
+          <div class="task-column-header">
+            <span class="task-column-title">Backlog</span>
+            <span class="badge badge-minimal badge-category">2</span>
+          </div>
+
+          <!-- Task Card 1 -->
+          <article class="task-card">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <span class="badge-minimal badge-priority-medium">Medium</span>
+              <span class="badge-minimal badge-category">Database</span>
+            </div>
+            <h3 class="task-title">Design TaskGravity NoSQL Schema</h3>
+            <p class="task-desc">Draft Mongoose models for tasks, priorities, tags, and timestamps for Practical 07 integration.</p>
+            <div class="task-footer-meta">
+              <span>Due Nov 22</span>
+              <span class="avatar-chip" title="Assigned to SB">SB</span>
+            </div>
+          </article>
+
+          <!-- Task Card 2 -->
+          <article class="task-card">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <span class="badge-minimal badge-priority-low">Low</span>
+              <span class="badge-minimal badge-category">Docs</span>
+            </div>
+            <h3 class="task-title">Audit DRY Principles in CSS</h3>
+            <p class="task-desc">Verify that all spacing, color tokens, and border radii rely strictly on CSS custom properties.</p>
+            <div class="task-footer-meta">
+              <span>Due Nov 24</span>
+              <span class="avatar-chip" title="Assigned to QA">QA</span>
+            </div>
+          </article>
+        </div>
+
+        <!-- Column 2: In Progress -->
+        <div class="col-12 col-md-4">
+          <div class="task-column-header">
+            <span class="task-column-title">In Progress</span>
+            <span class="badge badge-minimal badge-category">2</span>
+          </div>
+
+          <!-- Task Card 3 -->
+          <article class="task-card">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <span class="badge-minimal badge-priority-high">Urgent</span>
+              <span class="badge-minimal badge-category">Frontend</span>
+            </div>
+            <h3 class="task-title">Responsive Breakpoints Implementation</h3>
+            <p class="task-desc">Ensure seamless fluidity across Mobile (&lt;576px), Tablet (&lt;992px), and Desktop (1200px+).</p>
+            <div class="task-footer-meta">
+              <span>Due Today</span>
+              <span class="avatar-chip" title="Assigned to SB">SB</span>
+            </div>
+          </article>
+
+          <!-- Task Card 4 -->
+          <article class="task-card">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <span class="badge-minimal badge-priority-high">Urgent</span>
+              <span class="badge-minimal badge-category">UI/UX</span>
+            </div>
+            <h3 class="task-title">Eliminate Heavy AI Gradients</h3>
+            <p class="task-desc">Enforce minimalist flat typography and high-contrast accessibility across all interactive cards.</p>
+            <div class="task-footer-meta">
+              <span>Due Tomorrow</span>
+              <span class="avatar-chip" title="Assigned to DS">DS</span>
+            </div>
+          </article>
+        </div>
+
+        <!-- Column 3: Completed -->
+        <div class="col-12 col-md-4">
+          <div class="task-column-header">
+            <span class="task-column-title">Completed</span>
+            <span class="badge badge-minimal badge-category">2</span>
+          </div>
+
+          <!-- Task Card 5 -->
+          <article class="task-card">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <span class="badge-minimal badge-priority-low">Resolved</span>
+              <span class="badge-minimal badge-category">Layout</span>
+            </div>
+            <h3 class="task-title">Semantic HTML5 Skeleton Setup</h3>
+            <p class="task-desc">Constructed header, navigation, hero banner, main content section, and accessible footer.</p>
+            <div class="task-footer-meta">
+              <span>Shipped</span>
+              <span class="avatar-chip" title="Assigned to SB">SB</span>
+            </div>
+          </article>
+
+          <!-- Task Card 6 -->
+          <article class="task-card">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <span class="badge-minimal badge-priority-low">Resolved</span>
+              <span class="badge-minimal badge-category">Bootstrap</span>
+            </div>
+            <h3 class="task-title">Bootstrap 5 Component Integration</h3>
+            <p class="task-desc">Integrated Navbar, Cards, Badges, Accordion, Progress Bars, and Dialog Modal components.</p>
+            <div class="task-footer-meta">
+              <span>Shipped</span>
+              <span class="avatar-chip" title="Assigned to SB">SB</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         ARCHITECTURE ACCORDION (BOOTSTRAP COMPONENT)
+         ====================================================================== -->
+    <section class="mb-5" id="architecture">
+      <h2 class="section-heading">System Architecture & Engineering Roadmap</h2>
+      <p class="section-subtext">Progressive scaling trajectory across the practical sequence.</p>
+
+      <div class="accordion accordion-custom" id="roadmapAccordion">
+        <!-- Accordion Item 1 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Practical 01 & 02: Responsive Frontend & Dynamic Client-Side Logic
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#roadmapAccordion">
+            <div class="accordion-body">
+              Focuses on responsive design primitives using HTML5, modern CSS3 variables, and Bootstrap 5 grid systems. Scaling to Practical 02 introduces DOM manipulation, event handling, in-memory JSON array data structures, and client-side form validation without external frameworks.
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion Item 2 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Practical 03 & 04: Component State Architecture & Core Node.js HTTP
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#roadmapAccordion">
+            <div class="accordion-body">
+              Practical 03 transitions the TaskGravity user interface into a reactive single-page ReactJS architecture using hooks (<code>useState</code>, <code>useEffect</code>). Practical 04 establishes the server foundation using native Node.js HTTP modules, implementing server-side validation and native request parsing.
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion Item 3 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Practical 05, 06 & 07: Express Framework, REST API & NoSQL Persistence
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#roadmapAccordion">
+            <div class="accordion-body">
+              Completes the enterprise stack by migrating to ExpressJS with middleware-driven validation (<code>express-validator</code>), engineering a full CRUD REST API tested via Postman collections, and connecting to MongoDB Atlas with Mongoose schema modeling.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SYSTEM SPECIFICATIONS TABLE
+         ====================================================================== -->
+    <section class="mb-4" id="system-specs">
+      <h2 class="section-heading">Technical Specifications & Verification</h2>
+      <p class="section-subtext">Verification metrics and compliance checklist for Practical 01.</p>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle bg-white" style="font-size: 0.85rem; border-color: var(--tg-border);">
+          <thead class="table-light">
+            <tr>
+              <th scope="col" style="width: 25%;">Criterion</th>
+              <th scope="col" style="width: 35%;">Specification</th>
+              <th scope="col" style="width: 20%;">Implementation Method</th>
+              <th scope="col" style="width: 20%;">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fw-semibold">UI Architecture</td>
+              <td>Minimalist, Flat, Content-First</td>
+              <td>Custom CSS custom properties, zero purple-pink gradients</td>
+              <td><span class="badge badge-minimal badge-priority-low">Compliant</span></td>
+            </tr>
+            <tr>
+              <td class="fw-semibold">Responsive Grid</td>
+              <td>Mobile (&lt;576px), Tablet (&lt;992px), Desktop (&gt;1200px)</td>
+              <td>Bootstrap 5 Flex Grid system (col-12, col-md-4, col-lg-3)</td>
+              <td><span class="badge badge-minimal badge-priority-low">Compliant</span></td>
+            </tr>
+            <tr>
+              <td class="fw-semibold">Bootstrap Components</td>
+              <td>At least 3 distinct UI components</td>
+              <td>Navbar, Card, Badge, Modal, Accordion, Progress Bar (6 total)</td>
+              <td><span class="badge badge-minimal badge-priority-low">Compliant</span></td>
+            </tr>
+            <tr>
+              <td class="fw-semibold">Code Efficiency</td>
+              <td>DRY, minimal stylesheet, semantic HTML5</td>
+              <td>Scoped CSS classes, modular markup, zero redundancy</td>
+              <td><span class="badge badge-minimal badge-priority-low">Compliant</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================================================================
+       MODAL: CREATE TASK (BOOTSTRAP COMPONENT)
+       ====================================================================== -->
+  <div class="modal fade modal-custom" id="createTaskModal" tabindex="-1" aria-labelledby="createTaskModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fs-6 fw-bold text-dark" id="createTaskModalLabel">Create Task item</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form onsubmit="event.preventDefault(); alert('Practical 01 Demonstration: Form captured in static environment. Dynamic persistence active in Practical 02+.'); var modal = bootstrap.Modal.getInstance(document.getElementById('createTaskModal')); modal.hide();">
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="taskTitleInput" class="form-label form-label-sm fw-semibold text-secondary">Task Title</label>
+              <input type="text" class="form-control form-control-tg" id="taskTitleInput" placeholder="e.g. Implement Responsive Grid Breakpoint" required>
+            </div>
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label for="taskCategorySelect" class="form-label form-label-sm fw-semibold text-secondary">Category</label>
+                <select class="form-select form-select-tg" id="taskCategorySelect">
+                  <option value="Frontend">Frontend</option>
+                  <option value="UI/UX">UI/UX</option>
+                  <option value="Database">Database</option>
+                  <option value="Testing">Testing</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label for="taskPrioritySelect" class="form-label form-label-sm fw-semibold text-secondary">Priority</label>
+                <select class="form-select form-select-tg" id="taskPrioritySelect">
+                  <option value="High">Urgent / High</option>
+                  <option value="Medium" selected>Medium</option>
+                  <option value="Low">Low</option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="taskDescInput" class="form-label form-label-sm fw-semibold text-secondary">Description</label>
+              <textarea class="form-control form-control-tg" id="taskDescInput" rows="3" placeholder="Provide architectural scope and deliverables..."></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-tg-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-tg-accent btn-sm">Save Task</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       FOOTER
+       ====================================================================== -->
+  <footer class="footer-custom">
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-12 col-md-6">
+          <div class="footer-brand mb-1">TaskGravity &bull; Web Technology Laboratory</div>
+          <div>Department of Computer Engineering (Software Engineering)</div>
+          <div class="small mt-1 text-secondary">
+            Student: <strong>Sarthak Bhosale</strong> | PRN: <strong>202401100051</strong> | Batch: <strong>TY SE-A2</strong> | Roll No: <strong>A50</strong>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 text-md-end">
+          <div class="mb-1">
+            <a href="https://github.com/Sarthak-1229/taskgravity-practical-01" class="footer-link me-3" target="_blank" rel="noopener">GitHub Repository</a>
+            <a href="https://sarthak-1229.github.io/taskgravity-practical-01/" class="footer-link" target="_blank" rel="noopener">Live Deployment</a>
+          </div>
+          <div class="small text-secondary">
+            &copy; 2026 TaskGravity &bull; Practical 01 Submission. All rights reserved.
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
